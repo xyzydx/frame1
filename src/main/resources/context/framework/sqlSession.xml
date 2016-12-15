@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 直接指定映射的文件 -->
+		<!-- <property name="configLocation" value="classpath:context/mybatis.xml"></property> -->
+		<property name="mapperLocations" value="classpath*:mybatisMapper/*.xml"></property>
+	</bean>
+
+<!-- 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean> -->
+
+
+	
+	<!-- 创建数据映射器,映射器必须是接口 -->
+	<!-- 指定映射器接口，以及sqlsessionFactory -->
+	<!-- 当使用 MapperScannerConfiguer 扫描来实现 时，这里就不用配置-->
+<!-- 	<bean id="slogMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.orm.SlogMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean> -->
+	 
+	  <!-- 这里指定了要扫描的映射接口的路径 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.orm.mapper" />
+	</bean>
+	
+	<!-- 业务实例，指定映射器 -->
+	<bean id="slogService" class="com.orm.impl.SlogServiceImpl">
+		<!-- 当使用 MapperScannerConfiguer 扫描来实现 时，这里就不用配置，采用注解，自动注入-->
+		<!-- <property name="SlogMapper" ref="slogMapper" /> -->
+	</bean>
+
+</beans>

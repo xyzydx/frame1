@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xg">
+  <select id="t_crm_xg_order_iAsyncFlag" parameterType="string" resultType="string">
+		select sItemName from gold_db.t_crm_xg_order where iAutoID=#{autoId}
+	</select>
+	
+	<select id="t_st_settlement_log"  resultType="com.dto.Finance_db_T_st_settlement_log">
+		SELECT * from finance_db.t_st_settlement_log a	where a.iCreateTime>1481705725 order by a.iAutoID desc
+	</select>
+</mapper>
