@@ -11,7 +11,7 @@ public class BaseDaoImpl implements BaseDao {
 	private SqlSession session;
 
 	public <T> T queryForObject(String statementName, Object parameter) {
-		return session.selectOne(statementName, parameter);
+		return (T) session.selectOne(statementName, parameter);
 	}
 
 }
