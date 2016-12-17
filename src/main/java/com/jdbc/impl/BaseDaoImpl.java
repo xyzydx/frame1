@@ -4,8 +4,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jdbc.BaseDao;
+import org.springframework.stereotype.Service;
 
-//@Service
+@Service
 public class BaseDaoImpl implements BaseDao {
 	@Autowired
 	private SqlSession session;

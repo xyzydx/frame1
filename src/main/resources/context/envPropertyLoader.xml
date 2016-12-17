@@ -4,15 +4,19 @@
 <beans>
 
 
-	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<!-- <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+	<bean id="propertyPlaceholderConfigurer" class="com.spring.ext.PropertyPlaceholderConfigurer">
 		<!--引入单个文件 -->
 		<!-- <property name="location">
 			<value>person.properties</value>
 		</property> -->
 		<!--引入多个文件 -->
-		<property name="locations">
+		<property name="rootLocation">
+			<value>classpath:properties/env_dir.properties</value>
+		</property>
+		<property name="childLocations">
 			<list>
-				<value>properties/jdbc.properties</value>
+				<value>classpath:properties/${env}/jdbc.properties</value>
 			</list>
 		</property>
 	</bean>  
